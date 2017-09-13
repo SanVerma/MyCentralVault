@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<project name="CI-POC" basedir="."  default="deploywar">
+
+    <echo message="pulling in property files"/>
+    <property file="project.properties"/>
+	
+    <echo message="------ Invoking ANT build -----"/>
+	
+     <path id="compile.classpath">
+		<fileset dir="WebContent/WEB-INF/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="clean">
+		<delete dir="dist" />
+		<delete dir="build" />
+	</target>	
+	
+	<target name="init" depends="clean">
+		<mkdir dir="build/classes"/>
+		<mkdir dir="dist" />
+	</target>
+	
+	<target name="compile" depends="init" >
+			<javac destdir="build/classes" debug="true" srcdir="src" includeAntRuntime="false" >
+				<classpath refid="compile.classpath"/>
+			</javac>
+    </target>
+    
+    <target name="war" depends="compile">
+		<war destfile="dist/JSP-Servlet-POC.war" webxml="WebContent/WEB-INF/web.xml">
+			  <fileset dir="WebContent">
+			        <include name="**/*.*"/>
+			   </fileset>
+			  <!-- <lib dir="WebContent/WEB-INF/lib"/>-->
+			  <classes dir="build/classes"/>
+		</war>
+	</target>
+	<target name ="deploywar" depends ="war" description = "Deploy application as a WAR file"> 
+ 
+	      <copy todir = "${deploy.path}" preservelastmodified = "true">
+	         <fileset dir = "dist">
+	            <include name = "*.war"/>
+	         </fileset>
+	      </copy>
+	  </target>
+
+	
+	<!-- ============================================================ -->
+	<!-- Tomcat tasks -->
+	<!-- ============================================================ -->
+	<!-- We need the Catalina jars for Tomcat-->
+	<!--  * for other app servers - check the docs -->
+	<!--
+	<path id="catalina-ant-classpath">
+	
+	   <fileset dir="${appserver.lib}">
+	      <include name="catalina-ant.jar"/>
+	   </fileset>
+	</path>
+
+	<taskdef name="install" classname="org.apache.catalina.ant.InstallTask">
+	   <classpath refid="catalina-ant-classpath"/>
+	</taskdef>
+	<taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask">
+	   <classpath refid="catalina-ant-classpath"/>
+	</taskdef>
+	<taskdef name="list" classname="org.apache.catalina.ant.ListTask">
+	   <classpath refid="catalina-ant-classpath"/>
+	</taskdef>
+	<taskdef name="start" classname="org.apache.catalina.ant.StartTask">
+	   <classpath refid="catalina-ant-classpath"/>
+	</taskdef>
+	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask">
+	   <classpath refid="catalina-ant-classpath"/>
+	</taskdef>
+
+	<target name="reload" description="Reload application in Tomcat">
+	   <reload url="${tomcat.manager.url}"username="${tomcat.manager.username}"
+	      password="${tomcat.manager.password}" path="/${name}"/>
+	</target>
+	
+    -->
+	
+</project>

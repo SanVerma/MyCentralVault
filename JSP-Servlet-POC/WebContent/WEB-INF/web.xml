@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>JSP-Servlet-POC</display-name>
+
+	<servlet>
+		<servlet-name>helloWorld</servlet-name>
+		<servlet-class>san.servlet.ServletHelloWorld</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>helloWorld</servlet-name>
+		<url-pattern>/helloWorld</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<servlet-name>ServletRequestInfo</servlet-name>
+		<servlet-class>san.servlet.ServletRequestInfo</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ServletRequestInfo</servlet-name>
+		<url-pattern>/ServletRequestInfo</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>ServletRequestHeader</servlet-name>
+		<servlet-class>san.servlet.ServletRequestHeader</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ServletRequestHeader</servlet-name>
+		<url-pattern>/ServletRequestHeader</url-pattern>
+	</servlet-mapping>	
+	
+	
+	
+   <servlet>
+		<servlet-name>ServletRequestParamaters</servlet-name>
+		<servlet-class>san.servlet.ServletRequestParamaters</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ServletRequestParamaters</servlet-name>
+		<url-pattern>/ServletRequestParamaters</url-pattern>
+	</servlet-mapping>
+	
+
+   <servlet>
+		<servlet-name>CookieExample</servlet-name>
+		<servlet-class>san.servlet.CookieExample</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CookieExample</servlet-name>
+		<url-pattern>/CookieExample</url-pattern>
+	</servlet-mapping>
+	
+	   <servlet>
+		<servlet-name>SessionExample</servlet-name>
+		<servlet-class>san.servlet.SessionExample</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SessionExample</servlet-name>
+		<url-pattern>/SessionExample</url-pattern>
+	</servlet-mapping>
+	
+		
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
